@@ -33,7 +33,7 @@ export default class CreateAppointments1593087200414
             default: 'now()',
           },
         ],
-      }),
+      })
     );
   }
 
