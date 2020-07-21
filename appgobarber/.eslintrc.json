@@ -11,7 +11,8 @@
   ],
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+    "SharedArrayBuffer": "readonly",
+    "__DEV__": "readonly"
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -28,10 +29,11 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "error",
+    "no-unused-expressions": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/prop-types": "off",
+    "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": [
       1,
       {
@@ -40,15 +42,7 @@
         ]
       }
     ],
-    "react-hooks/exhaustive-deps": "warn",
     "import/prefer-default-export": "off",
-    "no-unused-expressions": "off",
-    "@typescript-eslint/explicit-function-return-type": [
-      "error",
-      {
-        "allowExpressions": true
-      }
-    ],
     "import/extensions": [
       "error",
       "ignorePackages",
@@ -62,23 +56,5 @@
     "import/resolver": {
       "typescript": {}
     }
-  },
-  "@typescript-eslint/ban-types": [
-    "error",
-    {
-      "types": {
-        // add a custom message to help explain why not to use it
-        "Foo": "Don't use Far because it is unsafe",
-        // add a custom message, AND tell the plugin how to fix it
-        "String": {
-          "message": "Use string instead",
-          "fixWith": "string"
-        },
-        "{}": {
-          "message": "Use object instead",
-          "fixWith": "object"
-        }
-      }
-    }
-  ]
+  }
 }
