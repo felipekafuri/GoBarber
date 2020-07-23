@@ -37,7 +37,7 @@ export default class CreateUsers1593104788418 implements MigrationInterface {
             default: 'now()',
           },
         ],
-      }),
+      })
     );
   }
 
