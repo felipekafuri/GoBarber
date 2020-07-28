@@ -24,7 +24,12 @@
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "error",
+    "@typescript-eslint/interface-name-prefix": [
+      "error",
+      {
+        "prefixWithI": "always"
+      }
+    ],
     "class-methods-use-this": "off",
     "@typescript-eslint/camelcase": "off",
     "camelcase": "off",
@@ -33,12 +38,6 @@
       "error",
       {
         "argsIgnorePattern": "_"
-      }
-    ],
-    "@typescript-eslint/interface-name-prefix": [
-      "error",
-      {
-        "prefixWithI": "always"
       }
     ],
     "import/extensions": [
