@@ -4,7 +4,6 @@ import AppError from '@shared/errors/AppError';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
 import IUserTokensRepository from '../repositories/IUserTokensRepository';
-import FakeUserTokensRepository from '../repositories/fakes/FakeUserTokensRepository';
 
 interface IRequestDTO {
   email: string;
@@ -32,7 +31,7 @@ class SendForgotPasswordEmailService {
 
     await this.usersTokensRepository.generate(user.id);
 
-    this.mailProvider.sendMail(
+    await this.mailProvider.sendMail(
       email,
       'Pedido de recuperação de senha recebido'
     );
