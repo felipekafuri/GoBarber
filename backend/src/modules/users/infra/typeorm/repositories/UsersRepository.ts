@@ -31,15 +31,15 @@ class UsersRepository implements IUsersRepository {
     email,
     password,
   }: ICreateUserDTO): Promise<User> {
-    const appoitment = this.ormRepository.create({
+    const user = this.ormRepository.create({
       name,
       email,
       password,
     });
 
-    await this.ormRepository.save(appoitment);
+    await this.ormRepository.save(user);
 
-    return appoitment;
+    return user;
   }
 
   public async save(user: User): Promise<User> {
