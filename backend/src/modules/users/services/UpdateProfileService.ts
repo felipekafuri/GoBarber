@@ -1,21 +1,24 @@
-import { inject, injectable } from 'tsyringe';
-import User from '@modules/users/infra/typeorm/entities/User';
-import AppError from '@shared/errors/AppError';
-import IUsersRepository from '../repositories/IUsersRepository';
-import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+import { injectable, inject } from 'tsyringe';
 
-interface IRequestDTO {
+import AppError from '@shared/errors/AppError';
+
+import User from '@modules/users/infra/typeorm/entities/User';
+import IHashProvider from '../providers/HashProvider/models/IHashProvider';
+import IUsersRepository from '../repositories/IUsersRepository';
+
+interface IRequest {
   user_id: string;
   name: string;
   email: string;
-  password?: string;
   old_password?: string;
+  password?: string;
 }
 
 @injectable()
 class UpdateProfileService {
   constructor(
-    @inject('UsersRepository') private usersRepository: IUsersRepository,
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
 
     @inject('HashProvider')
     private hashProvider: IHashProvider
@@ -23,11 +26,11 @@ class UpdateProfileService {
 
   public async execute({
     user_id,
-    email,
     name,
-    password,
+    email,
     old_password,
-  }: IRequestDTO): Promise<User> {
+    password,
+  }: IRequest): Promise<User> {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
@@ -44,7 +47,9 @@ class UpdateProfileService {
     user.email = email;
 
     if (password && !old_password) {
-      throw new AppError('Old password is required.');
+      throw new AppError(
+        'You need to inform the old password to set a new password'
+      );
     }
 
     if (password && old_password) {
@@ -54,7 +59,7 @@ class UpdateProfileService {
       );
 
       if (!checkOldPassword) {
-        throw new AppError('Old password is wrong.');
+        throw new AppError('Old password does not match');
       }
 
       user.password = await this.hashProvider.generateHash(password);
