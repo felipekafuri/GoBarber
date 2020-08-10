@@ -27,26 +27,6 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  public async create({
-    name,
-    email,
-    password,
-  }: ICreateUserDTO): Promise<User> {
-    const user = this.ormRepository.create({
-      name,
-      email,
-      password,
-    });
-
-    await this.ormRepository.save(user);
-
-    return user;
-  }
-
-  public async save(user: User): Promise<User> {
-    return this.ormRepository.save(user);
-  }
-
   public async findAllProviders({
     except_user_id,
   }: IFindAllProvidersDTO): Promise<User[]> {
@@ -61,7 +41,20 @@ class UsersRepository implements IUsersRepository {
     } else {
       users = await this.ormRepository.find();
     }
+
     return users;
+  }
+
+  public async create(userData: ICreateUserDTO): Promise<User> {
+    const user = this.ormRepository.create(userData);
+
+    await this.ormRepository.save(user);
+
+    return user;
+  }
+
+  public async save(user: User): Promise<User> {
+    return this.ormRepository.save(user);
   }
 }
 
