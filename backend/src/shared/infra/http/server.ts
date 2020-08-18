@@ -10,8 +10,10 @@ import AppError from '@shared/errors/AppError';
 
 import '@shared/infra/typeorm';
 import '@shared/container';
+import rateLimiter from './middlewares/retelimiter';
 
 const app = express();
+app.use(rateLimiter);
 app.use(express.json());
 app.use(cors());
 
