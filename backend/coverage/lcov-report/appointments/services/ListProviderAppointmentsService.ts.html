@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.67% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/3</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
@@ -108,10 +108,23 @@
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -124,26 +137,31 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -154,62 +172,77 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { inject, injectable } from 'tsyringe';
-import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
-import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
-import Appointment from '../infra/typeorm/entities/Appointment';
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { injectable, inject } from 'tsyringe';
 &nbsp;
-interface IRequestDTO {
+import Appointment from '@modules/appointments/infra/typeorm/entities/Appointment';
+import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import { classToClass } from 'class-transformer';
+&nbsp;
+interface IRequest {
   provider_id: string;
+  day: number;
   month: number;
   year: number;
-  day: number;
 }
 &nbsp;
 @injectable()
-class ListProviderAppointmentsService {
+class ListProviderMonthAvailabilityService {
+  private appointmentsRepository: IAppointmentsRepository;
+&nbsp;
+  private cacheProvider: ICacheProvider;
+&nbsp;
   constructor(
     @inject('AppointmentsRepository')
-    private appointmentsRepository: IAppointmentsRepository,
+    appointmentsRepository: IAppointmentsRepository,
+&nbsp;
     @inject('CacheProvider')
-    private cacheProvider: ICacheProvider
-  ) { }
+    cacheProvider: ICacheProvider
+  ) {
+    this.appointmentsRepository = appointmentsRepository;
+    this.cacheProvider = cacheProvider;
+  }
 &nbsp;
   public async execute({
     provider_id,
+    day,
     month,
     year,
-    day,
-  }: IRequestDTO): Promise&lt;Appointment[]&gt; {
-    const cacheKey = `provider-appointments:${provider_id}:${year}-${month}-${day}`;
-&nbsp;
+  }: IRequest): Promise&lt;Appointment[]&gt; {
     let appointments = await this.cacheProvider.recover&lt;Appointment[]&gt;(
-      cacheKey
+      `provider-appointments:${provider_id}:${day}-${month}-${year}`
     );
 &nbsp;
     if (<span class="missing-if-branch" title="if path not taken" >I</span>!appointments) {
       appointments = await this.appointmentsRepository.findAllInDayFromProvider(
         {
           provider_id,
+          day,
           month,
           year,
-          day,
         }
       );
-    }
 &nbsp;
-    await this.cacheProvider.save(cacheKey, appointments);
+      await this.cacheProvider.save({
+        key: `provider-appointments:${provider_id}:${day}-${month}-${year}`,
+        value: classToClass(appointments),
+      });
+    }
 &nbsp;
     return appointments;
   }
 }
 &nbsp;
-export default ListProviderAppointmentsService;
+export default ListProviderMonthAvailabilityService;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -217,7 +250,7 @@ export default ListProviderAppointmentsService;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Tue Aug 18 2020 15:12:34 GMT-0300 (Brasilia Standard Time)
+                at Sun Aug 23 2020 01:17:45 GMT-0300 (Brasilia Standard Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
