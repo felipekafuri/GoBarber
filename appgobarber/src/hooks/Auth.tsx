@@ -5,19 +5,16 @@ import React, {
   useContext,
   useEffect,
 } from 'react';
+
 import AsyncStorage from '@react-native-community/async-storage';
+
 import api from '../service/api';
 
 interface User {
-  name: string;
   id: string;
+  name: string;
+  email: string;
   avatar_url: string;
-  email: string;
-}
-
-interface SignInCredentials {
-  email: string;
-  password: string;
 }
 
 interface AuthState {
@@ -25,11 +22,17 @@ interface AuthState {
   user: User;
 }
 
+interface SignInCredentials {
+  email: string;
+  password: string;
+}
+
 interface AuthContextData {
   user: User;
-  signIn(credentials: SignInCredentials): Promise<void>;
-  signOut(): void;
   loading: boolean;
+  signIn(credentials: SignInCredentials): Promise<void>;
+  updateUser(user: User): Promise<void>;
+  signOut(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -41,12 +44,13 @@ const AuthProvider: React.FC = ({ children }) => {
   useEffect(() => {
     async function loadStorageData(): Promise<void> {
       const [token, user] = await AsyncStorage.multiGet([
-        '@BarberApp: token',
-        '@BarberApp: user',
+        '@BarberApp:token',
+        '@BarberApp:user',
       ]);
 
       if (token[1] && user[1]) {
         api.defaults.headers.authorization = `Bearer ${token[1]}`;
+
         setData({ token: token[1], user: JSON.parse(user[1]) });
       }
 
@@ -57,13 +61,13 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('sessions', { email, password });
+    const reseponse = await api.post('sessions', { email, password });
 
-    const { token, user } = response.data;
+    const { token, user } = reseponse.data;
 
     await AsyncStorage.multiSet([
-      ['@BarberApp: token', token],
-      ['@BarberApp: user', JSON.stringify(user)],
+      ['@BarberApp:token', token],
+      ['@BarberApp:user', JSON.stringify(user)],
     ]);
 
     api.defaults.headers.authorization = `Bearer ${token}`;
@@ -72,13 +76,27 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signOut = useCallback(async () => {
-    await AsyncStorage.multiRemove(['@BarberApp: token', '@BarberApp: user']);
+    await AsyncStorage.multiRemove(['@BarberApp:user', '@BarberApp:token']);
 
     setData({} as AuthState);
   }, []);
 
+  const updateUser = useCallback(
+    async (user: User) => {
+      await AsyncStorage.setItem('@BarberApp:user', JSON.stringify(user));
+
+      setData({
+        token: data.token,
+        user,
+      });
+    },
+    [setData, data.token],
+  );
+
   return (
-    <AuthContext.Provider value={{ user: data.user, signIn, signOut, loading }}>
+    <AuthContext.Provider
+      value={{ user: data.user, loading, signIn, signOut, updateUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
@@ -94,4 +112,4 @@ function useAuth(): AuthContextData {
   return context;
 }
 
-export { useAuth, AuthProvider };
+export { AuthProvider, useAuth };

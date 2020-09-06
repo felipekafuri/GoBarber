@@ -91,7 +91,7 @@ const SignIn: React.FC = () => {
             <Image source={LogoImg} />
 
             <View>
-              <Title>Faça seu logon</Title>
+              <Title>Criar sua conta</Title>
             </View>
 
             <Form

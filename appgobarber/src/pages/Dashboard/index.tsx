@@ -29,7 +29,7 @@ export interface Provider {
 }
 
 const Dashboard: React.FC = () => {
-  const { signOut, user } = useAuth();
+  const { user } = useAuth();
   const { navigate } = useNavigation();
   const [providers, setProviders] = useState<Provider[]>([]);
 
@@ -40,9 +40,8 @@ const Dashboard: React.FC = () => {
   }, []);
 
   const navigateToProfile = useCallback(() => {
-    // navigate('Profile');
-    signOut();
-  }, [signOut]);
+    navigate('Profile');
+  }, [navigate]);
 
   const navigateToCreateAppointment = useCallback(
     (providerId: string) => {
@@ -77,7 +76,13 @@ const Dashboard: React.FC = () => {
               navigateToCreateAppointment(provider.id);
             }}
           >
-            <ProviderAvatar source={{ uri: provider.avatar_url }} />
+            <ProviderAvatar
+              source={{
+                uri:
+                  user.avatar_url ||
+                  'https://api.adorable.io/avatars/186/abott@adorable.png',
+              }}
+            />
 
             <ProviderInfo>
               <ProviderName>{provider.name}</ProviderName>
