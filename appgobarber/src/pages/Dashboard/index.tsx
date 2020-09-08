@@ -79,7 +79,7 @@ const Dashboard: React.FC = () => {
             <ProviderAvatar
               source={{
                 uri:
-                  user.avatar_url ||
+                  provider.avatar_url ||
                   'https://api.adorable.io/avatars/186/abott@adorable.png',
               }}
             />
