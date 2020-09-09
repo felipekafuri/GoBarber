@@ -39,7 +39,7 @@ interface ProfileFormData {
 }
 
 const Profile: React.FC = () => {
-  const { user, updateUser } = useAuth();
+  const { user, updateUser, signOut } = useAuth();
   const theme = useTheme();
 
   const formRef = useRef<FormHandles>(null);
@@ -247,6 +247,9 @@ const Profile: React.FC = () => {
 
               <Button onPress={() => formRef.current?.submitForm()}>
                 Confirmar mudanças
+              </Button>
+              <Button onPress={signOut}>
+                Sair do app
               </Button>
             </Form>
           </Container>
