@@ -8,7 +8,7 @@ interface ContainerProps {
   isErrored: boolean;
 }
 
-export const Cotainer = styled.div<ContainerProps>`
+export const Container = styled.div<ContainerProps>`
   background: #232129;
   border-radius: 10px;
   border: 2px solid #232129;

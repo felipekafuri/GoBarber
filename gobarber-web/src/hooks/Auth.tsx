@@ -3,7 +3,7 @@ import api from '../services/api';
 
 interface User {
   name: string;
-  id: StaticRange;
+  id: string;
   avatar_url: string;
   email: string;
 }
