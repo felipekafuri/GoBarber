@@ -23,7 +23,7 @@
 </div>
 
 
-## Running the api
+## Running the api -> https://github.com/felipekafuri/gobarber-api
 
 ```bash
 git clone https://github.com/felipekafuri/GoBarber
@@ -41,7 +41,7 @@ yarn dev:server
 ```
 
 
-## Running the web
+## Running the web -> https://github.com/felipekafuri/gobarber-web
 ```bash
 cd GoBarber/gobarber-web
 ```
@@ -55,7 +55,7 @@ yarn start
 ```
 
 
-## Running the mobile
+## Running the mobile -> https://github.com/felipekafuri/gobarber-mob.git
 ```bash
 cd GoBarber/appgobarber
 ```
